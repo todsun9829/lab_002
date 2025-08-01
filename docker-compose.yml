@@ -23,9 +23,9 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
+      MYSQL_DATABASE: toddb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootpass
     volumes:
       - db-data:/var/lib/mysql
     ports:
