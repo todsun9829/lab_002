@@ -5,9 +5,9 @@ const port = 3000;
 
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'myuser',
-  password: process.env.DB_PASSWORD || 'mypassword',
-  database: process.env.DB_NAME || 'mydb'
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'rootpass',
+  database: process.env.DB_NAME || 'toddb'
 };
 
 app.get('/gettime', async (req, res) => {
