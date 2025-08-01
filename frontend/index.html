@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>LAB 002</title>
@@ -11,6 +12,7 @@
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body class="bg-light">
 
   <div class="container py-5">
@@ -20,7 +22,7 @@
           <div class="card-body">
             <h1 class="card-title mb-4">Hello from Frontend V1.04</h1>
             <button id="callApi" class="btn btn-primary mb-3">Call API</button>
-            <div id="result" class="alert alert-secondary" role="alert" style="display: none;"></div>
+            <div id="result" role="alert" style="display: none;"></div>
           </div>
         </div>
       </div>
@@ -31,12 +33,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-  $('#callApi').click(function () {
-    $.get('/api/users', function (data) {
-      if (data.status === 'success' && Array.isArray(data.data)) {
-        const users = data.data;
+    $('#callApi').click(function () {
+      $.get('/api/users', function (data) {
+        if (data.status === 'success' && Array.isArray(data.data)) {
+          const users = data.data;
 
-        let table = `
+          let table = `
           <table class="table table-bordered">
             <thead>
               <tr><th>Name</th><th>Country</th></tr>
@@ -44,33 +46,34 @@
             <tbody>
         `;
 
-        users.forEach(user => {
-          table += `<tr><td>${user.name}</td><td>${user.country}</td></tr>`;
-        });
+          users.forEach(user => {
+            table += `<tr><td>${user.name}</td><td>${user.country}</td></tr>`;
+          });
 
-        table += `</tbody></table>`;
+          table += `</tbody></table>`;
 
+          $('#result')
+            .html(table)
+            .removeClass('alert-danger')
+            .addClass('alert-secondary')
+            .show();
+        } else {
+          $('#result')
+            .html('Invalid response format.')
+            .removeClass('alert-secondary')
+            .addClass('alert-danger')
+            .show();
+        }
+      }).fail(function (err) {
         $('#result')
-          .html(table)
-          .removeClass('alert-danger')
-          .addClass('alert-secondary')
-          .show();
-      } else {
-        $('#result')
-          .html('Invalid response format.')
+          .html('Error: ' + err.responseText)
           .removeClass('alert-secondary')
           .addClass('alert-danger')
           .show();
-      }
-    }).fail(function (err) {
-      $('#result')
-        .html('Error: ' + err.responseText)
-        .removeClass('alert-secondary')
-        .addClass('alert-danger')
-        .show();
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
