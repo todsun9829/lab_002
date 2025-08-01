@@ -3,9 +3,9 @@ services:
     build: ./backend
     environment:
       DB_HOST: db
-      DB_USER: myuser
-      DB_PASSWORD: mypassword
-      DB_NAME: mydb
+      DB_USER: root
+      DB_PASSWORD: rootpass
+      DB_NAME: toddb
     expose:
       - "3000"
 
