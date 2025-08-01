@@ -32,7 +32,7 @@
 
   <script>
     $('#callApi').click(function () {
-      $.get('/api/gettime', function (data) {
+      $.get('/api/users', function (data) {
         $('#result').html(JSON.stringify(data)).removeClass('alert-danger').addClass('alert-secondary').show();
       }).fail(function (err) {
         $('#result').html('Error: ' + err.responseText).removeClass('alert-secondary').addClass('alert-danger').show();
