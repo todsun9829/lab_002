@@ -1,0 +1,25 @@
+name: Deploy lab_002 to Lightsail
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 18.143.179.211 >> ~/.ssh/known_hosts
+
+      - name: Run deploy script on Lightsail
+        run: |
+          ssh -i ~/.ssh/id_rsa ubuntu@18.143.179.211 'bash ~/apps/lab_002/deploy.sh'
