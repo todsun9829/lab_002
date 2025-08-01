@@ -22,4 +22,7 @@ jobs:
 
       - name: Run deploy script on Lightsail
         run: |
-          ssh -i ~/.ssh/id_rsa ubuntu@18.143.179.211 'bash ~/apps/lab_002/deploy.sh'
+          ssh -i ~/.ssh/id_rsa ubuntu@18.143.179.211 '
+            cd ~/apps/lab_002 && \
+            bash ./deploy.sh
+          '
